@@ -11,6 +11,8 @@ typedef struct s_list
 	struct s_list	*next;
 }			t_list;
 
+void	pb(t_list **head1, t_list **head2);
+void	pa(t_list **head1, t_list **head2);
 int		is_list_sorted_ascending(t_list *a);
 void	convert_args_to_list(char **argv, t_list **a);
 void	sort_three(t_list **head);

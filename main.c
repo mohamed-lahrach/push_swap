@@ -10,11 +10,43 @@ void print_list(t_list *head)
         current = current->next;
     }
 }
+void compare_a_element(int *element, t_list **b)
+{
+    t_list *temp;
+
+    temp = *b;
+    (void)element;
+    while (temp != NULL)
+    {
+        printf("%i\n", *(int *)temp->content);
+        temp = temp->next;
+    }
+    
+
+}
 void sort_it(t_list **a, t_list **b)
 {
+    t_list *head;
+
+    head = *a;
+    if (ft_lstsize(*a) == 4)
+    {
+        pa(a, b);
+    }else if (ft_lstsize(*a) > 4)
+    {
+        pa(a, b);
+        pa(a, b);
+        int *element = (int *)head->content;
+        printf("Element of stack a : %i\n", *element);
+        printf("these are elements of stack_b\n");
+        while (ft_lstsize(*a) >= 3)
+        {
+            compare_a_element(element, b);
+            pa(a, b);
+        }
+    }
     
-    print_list(*a);
-    print_list(*b);
+    
 }
 void validate_and_sort_input(char **argv, t_list **a, t_list **b)
 {
@@ -47,6 +79,8 @@ int main(int argc, char **argv)
     t_list *b;
 
     b = NULL;
+    a = NULL;
+    str = NULL;
     i = 1;
     if (check_empty_str(argv))
     {
@@ -62,7 +96,9 @@ int main(int argc, char **argv)
         return 1;
     argv = ft_split(str, ' ');
     validate_and_sort_input(argv, &a, &b);
-    print_list(a);
+    // print_list(a);
+    // printf("\n---------------------------------------\n");
+    // print_list(b);
     return 0;
 }
 //-2147483648 to 2147483647
