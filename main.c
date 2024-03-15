@@ -10,19 +10,35 @@ void print_list(t_list *head)
         current = current->next;
     }
 }
-void compare_a_element(int *element, t_list **b)
+
+int get_index_of_min_and_nearest(int *element, t_list **b)
 {
     t_list *temp;
 
     temp = *b;
-    (void)element;
-    while (temp != NULL)
+    int min_closest_distance;
+    int min_closest_index;
+    int i;
+    int diff;
+    min_closest_distance = -1;
+    min_closest_index = -1;
+    i = 0;
+    while (temp)
     {
-        printf("%i\n", *(int *)temp->content);
-        temp = temp->next;
-    }
-    
+        if (*(int *)temp->content < element)
+        {
+            diff = element - *(int *)temp->content;
 
+            if (min_closest_index == -1 || diff < min_closest_distance)
+            {
+                min_closest_distance = diff;
+                min_closest_index = i;
+            }
+        }
+        temp = temp->next;
+        i++;
+    }
+    return min_closest_index;
 }
 void sort_it(t_list **a, t_list **b)
 {
@@ -41,7 +57,8 @@ void sort_it(t_list **a, t_list **b)
         printf("these are elements of stack_b\n");
         while (ft_lstsize(*a) >= 3)
         {
-            compare_a_element(element, b);
+            int index  = get_index_of_min_and_nearest(element, b);
+            printf("%i\n", index);
             pa(a, b);
         }
     }
