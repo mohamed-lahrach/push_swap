@@ -6,7 +6,7 @@ SRC = check_empty_str.c check_valid_input.c check_within_range.c \
 	ft_lstclear_bonus.c ft_lstiter_bonus.c \
 	swap.c rotate.c sort_three.c reverse_rotate.c \
 	is_list_sorted_ascending.c convert_args_to_list.c \
-	push.c
+	push.c get_index_of_closest.c
 
 OBJ = $(SRC:.c=.o)
 COMPLE = cc
@@ -23,5 +23,5 @@ clean :
 
 fclean : clean
 	rm -f $(NAME)
-
+	
 re: fclean all
