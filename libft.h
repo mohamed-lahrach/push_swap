@@ -11,6 +11,13 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+int					get_element_at_index(t_list *head, int index);
+void				push_to_b(t_list **a, t_list **b);
+void				push_to_a(t_list **a, t_list **b);
+void				print_list(t_list *head);
+int					get_index_of_min(t_list **b);
+int					get_index_of_max(t_list **b);
+void				finalize_sorting(t_list **a);
 
 int					get_index_of_min_and_nearest(int *element, t_list **b);
 int					get_index_of_max_and_nearest(int *element, t_list **b);
