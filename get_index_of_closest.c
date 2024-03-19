@@ -49,10 +49,32 @@ int get_index_of_closest(int *element, t_list **head, compare_func compare) {
 
 int	get_index_of_min_and_nearest(int *element, t_list **head)
 {
-	return (get_index_of_closest(element, head, less_than));
+	int index;
+	char *str;
+
+	index = get_index_of_closest(element, head, less_than);
+	str = ft_strjoin("min and nearest index is : ", "");
+	if (index == -1)
+	{
+		index = get_index_of_max(head);
+		str = ft_strjoin("max index is : ", "");
+	}
+	//printf("%s %i", str, index);
+	return (index);
 }
 
 int	get_index_of_max_and_nearest(int *element, t_list **head)
 {
-	return (get_index_of_closest(element, head, greater_than));
+	int index;
+	char *str;
+
+	index = get_index_of_closest(element, head, greater_than);
+	str = ft_strjoin("max and nearest index is : ", "");
+	if (index == -1)
+	{
+		index = get_index_of_min(head);
+		str = ft_strjoin("min index", "");
+	}
+	//printf("%s %i", str, index);
+	return (index);
 }

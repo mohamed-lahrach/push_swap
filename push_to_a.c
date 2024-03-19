@@ -5,11 +5,11 @@ void	transfer_to_stack_a(t_list **a, t_list **b, int max_nearest_index)
 	int	i;
 	int	size_a;
 
-	printf("-----------------print list a-----------------\n");
+	printf("\n-----------------print list a-----------------\n");
 	print_list(*a);
-	printf("-----------------print list b-----------------\n");
+	printf("\n-----------------print list b-----------------\n");
 	print_list(*b);
-	printf("-----------------\n");
+	printf("\n-----------------\n");
 	i = 0;
 	size_a = ft_lstsize(*a);
 	if (max_nearest_index <= size_a / 2)
@@ -28,7 +28,7 @@ void	transfer_to_stack_a(t_list **a, t_list **b, int max_nearest_index)
 			i++;
 		}
 	}
-	pb(b, a);
+	pa(b, a);
 }
 
 void	push_to_a(t_list **a, t_list **b)
@@ -37,7 +37,7 @@ void	push_to_a(t_list **a, t_list **b)
 	int		index;
 	int		i;
 	t_list	*temp;
-	char	*str;
+	//char	*str;
 
 	temp = *b;
 	index = -1;
@@ -45,17 +45,11 @@ void	push_to_a(t_list **a, t_list **b)
 	while (i)
 	{
 		element = (int *)(*b)->content;
-		index = get_index_of_max_and_nearest(element, a);
-		str = ft_strjoin("max nearest index", " : ");
-		if (index == -1)
-		{
-			index = get_index_of_min(a);
-			str = ft_strjoin("index of min", " ");
-		}
-		printf("\n\n------transfer_to_stack_a------\n");
+		printf("\n------transfer_to_stack_a------\n");
 		printf("element of stack_a %i\n", *element);
-		printf("%s  %i\n", str, index);
-		printf("%s  %i\n", str, get_element_at_index(*b, index));
+		index = get_index_of_max_and_nearest(element, a);
+		// printf("%s  %i\n", str, index);
+		// printf("%s  %i\n", str, get_element_at_index(*b, index));
 		transfer_to_stack_a(a, b, index);
 		i--;
 	}
