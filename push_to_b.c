@@ -29,7 +29,7 @@ void	transfer_to_stack_b(t_list **a, t_list **b, int index_b, int *element)
 	print_list(*a);
 	printf("\n-----------------print list b-----------------\n");
 	print_list(*b);
-	printf("\n-----------------\n");
+	printf("\n---------------------------------------------------------------------------------------\n");
 	printf("\nindex_b min and nearest or the max : %i\n", index_b);
 	printf("\nindex_a of the best element to push it to a : %i\n", index_a);
 	printf("\nsiseof(a) %i\n", size_a);
@@ -80,6 +80,7 @@ void	transfer_to_stack_b(t_list **a, t_list **b, int index_b, int *element)
 	// index_b is in the first half and index_b is in the second half
 	else if (index_b <= size_b / 2 && index_a > size_a / 2)
 	{
+		index_a = size_a - index_a;
 		while (index_b > 0)
 		{
 			rb(b);
@@ -94,6 +95,7 @@ void	transfer_to_stack_b(t_list **a, t_list **b, int index_b, int *element)
 	// index_b is in the second half and index_b is in the first half
 	else if (index_b > size_b / 2 && index_a <= size_a / 2)
 	{
+		index_b = size_b - index_b;
 		while (index_b > 0)
 		{
 			rrb(b);

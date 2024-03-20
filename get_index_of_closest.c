@@ -76,5 +76,6 @@ int	get_index_of_max_and_nearest(int *element, t_list **head)
 		str = ft_strjoin("min index", "");
 	}
 	//printf("%s %i", str, index);
+	//printf("%s  %i\n", str, get_element_at_index(*head, index));
 	return (index);
 }
