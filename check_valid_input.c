@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_valid_input.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/23 01:25:26 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/03/23 01:46:13 by mlahrach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 int	check_duplicate_digits(char **arr)
@@ -22,6 +34,7 @@ int	check_duplicate_digits(char **arr)
 	}
 	return (0);
 }
+
 int	check_special_chars_or_letters(char **arr)
 {
 	int	i;
@@ -46,28 +59,24 @@ int	check_special_chars_or_letters(char **arr)
 	}
 	return (0);
 }
+
 int	check_valid_input(char **arr)
 {
-	int i = 0;
-	int valid = 1;
+	int	i;
+	int	valid;
 
+	i = 0;
+	valid = 1;
 	if (check_special_chars_or_letters(arr))
-	{
-		printf("special chars or letters\n");
 		valid = 0;
-	}
 	else if (check_duplicate_digits(arr))
-	{
-		printf("duplicate digits\n");
 		valid = 0;
-	}
 	else
 	{
 		while (arr[i])
 		{
 			if (!check_within_range(arr[i]))
 			{
-                printf("not within range\n");
 				valid = 0;
 				break ;
 			}

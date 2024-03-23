@@ -1,81 +1,69 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_index_of_closest.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/23 01:29:07 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/03/23 02:03:07 by mlahrach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-typedef bool	(*compare_func)(int, int);
-
-bool	greater_than(int a, int b)
+int	get_index_of_min_and_nearest(int element, t_list **head)
 {
-	return (a > b);
-}
+	int		i;
+	int		j;
+	t_list	*new;
+	int		p;
 
-bool	less_than(int a, int b)
-{
-	return (a < b);
-}
-
-int	ft_abs(int num)
-{
-	if (num < 0)
-		return (-num);
-	else
-		return (num);
-}
-
-int get_index_of_closest(int *element, t_list **head, compare_func compare) {
-	t_list  *temp;
-	int     closest[2]; // closest[0] for closest_distance, closest[1] for closest_index
-	int     i;
-	int     diff;
-
-	temp = *head;
-	closest[0] = -1; // closest_distance
-	closest[1] = -1; // closest_index
 	i = 0;
-	while (temp)
+	new = *head;
+	j = -1;
+	p = -2147483648;
+	while (new)
 	{
-		if (compare(*(int *)temp->content, *element))
+		if (*(int *)new->content < element && *(int *)new->content >= p)
 		{
-			diff = ft_abs(*(int *)temp->content - *element);
-			if (closest[1] == -1 || diff < closest[0])
-			{
-				closest[0] = diff;
-				closest[1] = i;
-			}
+			p = *(int *)new->content;
+			j = i;
 		}
-		temp = temp->next;
 		i++;
+		new = new->next;
 	}
-	return closest[1];
+	if (j == -1)
+	{
+		j = get_index_of_max(head);
+	}
+	return (j);
 }
 
-int	get_index_of_min_and_nearest(int *element, t_list **head)
+int	get_index_of_max_and_nearest(int element, t_list **head)
 {
-	int index;
-	char *str;
+	int		i;
+	int		index_of_max_nearest;
+	t_list	*new;
+	long	p;
 
-	index = get_index_of_closest(element, head, less_than);
-	str = ft_strjoin("min and nearest index is : ", "");
-	if (index == -1)
+	index_of_max_nearest = -1;
+	i = 0;
+	new = *head;
+	p = 2147483648;
+	while (new)
 	{
-		index = get_index_of_max(head);
-		str = ft_strjoin("max index is : ", "");
+		if (*(int *)(new->content) > element && *(int *)(new->content) < p)
+		{
+			p = *(int *)(new->content);
+			index_of_max_nearest = i;
+		}
+		i++;
+		new = new->next;
 	}
-	//printf("%s %i", str, index);
-	return (index);
-}
-
-int	get_index_of_max_and_nearest(int *element, t_list **head)
-{
-	int index;
-	char *str;
-
-	index = get_index_of_closest(element, head, greater_than);
-	str = ft_strjoin("max and nearest index is : ", "");
-	if (index == -1)
+	if (index_of_max_nearest == -1)
 	{
-		index = get_index_of_min(head);
-		str = ft_strjoin("min index", "");
+		index_of_max_nearest = get_index_of_min(head);
 	}
-	//printf("%s %i", str, index);
-	//printf("%s  %i\n", str, get_element_at_index(*head, index));
-	return (index);
+	return (index_of_max_nearest);
 }

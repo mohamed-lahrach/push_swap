@@ -1,12 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/23 01:29:26 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/03/23 02:22:55 by mlahrach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 void	sort_it(t_list **a, t_list **b)
 {
-	printf("------------------push_to_b------------------\n");
 	push_to_b(a, b);
-	printf("------------------push_to_a------------------\n");
 	push_to_a(a, b);
 }
+
 void	validate_and_sort_input(char **argv, t_list **a, t_list **b)
 {
 	if (check_valid_input(argv))
@@ -17,8 +28,7 @@ void	validate_and_sort_input(char **argv, t_list **a, t_list **b)
 	convert_args_to_list(argv, a);
 	if (is_list_sorted_ascending(*a))
 	{
-		printf("List is already sorted\n");
-		return; 
+		return ;
 	}
 	else
 	{
@@ -32,6 +42,22 @@ void	validate_and_sort_input(char **argv, t_list **a, t_list **b)
 			sort_it(a, b);
 	}
 }
+
+char	*concatenate_arguments(int argc, char **argv)
+{
+	char	*str;
+	int		i;
+
+	str = NULL;
+	i = 1;
+	while (i < argc)
+	{
+		str = ft_strjoin(str, argv[i++]);
+		str = ft_strjoin(str, " ");
+	}
+	return (str);
+}
+
 int	main(int argc, char **argv)
 {
 	char	*str;
@@ -43,24 +69,18 @@ int	main(int argc, char **argv)
 	a = NULL;
 	str = NULL;
 	i = 1;
-	if(argc == 1)
+	if (argc == 1)
 		return (0);
 	if (check_empty_str(argv))
 	{
 		write(2, "Error\n", 6);
 		return (1);
 	}
-	while (i < argc)
-	{
-		str = ft_strjoin(str, argv[i++]);
-		str = ft_strjoin(str, " ");
-	}
+	str = concatenate_arguments(argc, argv);
 	if (str == NULL)
 		return (1);
 	argv = ft_split(str, ' ');
 	validate_and_sort_input(argv, &a, &b);
-	printf("------------------main-------------\n");
-	print_list(a);
+	free_resources(str, argv, &a, &b);
 	return (0);
 }
-//-2147483648 to 2147483647

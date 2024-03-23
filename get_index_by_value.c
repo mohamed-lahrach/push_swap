@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   get_index_by_value.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 01:28:33 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/03/23 01:28:35 by mlahrach         ###   ########.fr       */
+/*   Created: 2024/03/23 02:34:01 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/03/23 02:38:06 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int	get_index_by_value(t_list *head, int value)
 {
-	t_list	*last;
-	int		i;
-	int		a;
+	int	i;
 
-	last = NULL;
-	i = ft_lstsize(lst);
-	a = 0;
-	while (a != i)
+	i = 0;
+	while (head)
 	{
-		last = lst;
-		a++;
-		lst = lst->next;
+		if (*(int *)head->content == value)
+			return (i);
+		head = head->next;
+		i++;
 	}
-	return (last);
+	return (-1);
 }

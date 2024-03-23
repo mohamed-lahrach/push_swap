@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/23 01:28:58 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/03/23 01:29:00 by mlahrach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static int	my_strlen(const char *s)
@@ -31,5 +43,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (s2 && s2[idx])
 		join[idx_join++] = s2[idx++];
 	join[idx_join] = '\0';
+	if (s1)
+		free((void *)s1);
 	return (join);
 }

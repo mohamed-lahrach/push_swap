@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_to_a.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/23 01:29:43 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/03/23 01:29:45 by mlahrach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 void	transfer_to_stack_a(t_list **a, t_list **b, int index_a)
@@ -5,12 +17,6 @@ void	transfer_to_stack_a(t_list **a, t_list **b, int index_a)
 	int	i;
 	int	size_a;
 
-	printf("\n-----------------print list a-----------------\n");
-	print_list(*a);
-	printf("\n-----------------print list b-----------------\n");
-	print_list(*b);
-	printf("\n---------------------------------------------------------------\n");
-	printf("\nindex_a : %i\n", index_a);
 	i = 0;
 	size_a = ft_lstsize(*a);
 	if (index_a <= size_a / 2)
@@ -38,7 +44,6 @@ void	push_to_a(t_list **a, t_list **b)
 	int		index;
 	int		i;
 	t_list	*temp;
-	//char	*str;
 
 	temp = *b;
 	index = -1;
@@ -46,11 +51,7 @@ void	push_to_a(t_list **a, t_list **b)
 	while (i)
 	{
 		element = (int *)(*b)->content;
-		printf("\n------transfer_to_stack_a------\n");
-		printf("element of stack_b %i\n", *element);
-		index = get_index_of_max_and_nearest(element, a);
-		printf("%s  %i\n", "index of element", index);
-		printf("%s  %i\n", "get  element by index", get_element_at_index(*b, index));
+		index = get_index_of_max_and_nearest(*element, a);
 		transfer_to_stack_a(a, b, index);
 		i--;
 	}

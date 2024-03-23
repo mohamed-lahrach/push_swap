@@ -1,16 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/23 01:29:58 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/03/23 03:24:51 by mlahrach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void reverse_rotate(t_list **a)
+void	reverse_rotate(t_list **a)
 {
-    if (*a == NULL || (*a)->next == NULL)
-        return;
+	t_list	*second_last;
+	t_list	*last;
 
-    t_list *second_last = *a;
-    t_list *last = ft_lstlast(*a);
-    while (second_last->next->next != NULL)
-        second_last = second_last->next;
-    second_last->next = NULL;
-    ft_lstadd_front(a, last);
+	if (*a == NULL || (*a)->next == NULL)
+		return ;
+	second_last = *a;
+	last = ft_lstlast(*a);
+	while (second_last->next->next != NULL)
+		second_last = second_last->next;
+	second_last->next = NULL;
+	ft_lstadd_front(a, last);
 }
 
 void	rra(t_list **head)

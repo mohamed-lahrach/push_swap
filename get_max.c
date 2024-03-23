@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   get_max.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 01:28:33 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/03/23 01:28:35 by mlahrach         ###   ########.fr       */
+/*   Created: 2024/03/23 03:21:36 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/03/23 03:23:29 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-t_list	*ft_lstlast(t_list *lst)
+int	get_max(int a, int b)
 {
-	t_list	*last;
-	int		i;
-	int		a;
-
-	last = NULL;
-	i = ft_lstsize(lst);
-	a = 0;
-	while (a != i)
-	{
-		last = lst;
-		a++;
-		lst = lst->next;
-	}
-	return (last);
+	if (a > b)
+		return (a);
+	return (b);
 }

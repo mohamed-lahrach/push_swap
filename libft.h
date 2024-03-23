@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/23 01:29:23 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/03/23 03:22:25 by mlahrach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stdbool.h>
@@ -11,7 +23,38 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }					t_list;
-int					get_element_at_index(t_list *head, int index);
+
+typedef struct s_move
+{
+	t_list			*temp;
+	int				index_b;
+	int				*best_element_to_push;
+	int				index_a;
+	int				move;
+	int				best_move;
+}					t_move;
+typedef struct s_indexes
+{
+	int				index_a;
+	int				index_b;
+	int				size_a;
+	int				size_b;
+}					t_indexes;
+int					get_max(int a, int b);
+void				perform_operations_1(t_list **a, t_list **b, int index_a,
+						int index_b);
+void				perform_operations_2(t_list **a, t_list **b, int index_a,
+						int index_b);
+void				perform_operations_3(t_list **a, t_list **b, int index_a,
+						int index_b);
+void				perform_operations_4(t_list **a, t_list **b, int index_a,
+						int index_b);
+void				perform_operations_based_on_indexes(t_list **a, t_list **b,
+						t_indexes indexes);
+int					get_index_by_value(t_list *head, int value);
+void				free_split(char **arr);
+void				free_resources(char *str, char **argv, t_list **a,
+						t_list **b);
 void				push_to_b(t_list **a, t_list **b);
 void				push_to_a(t_list **a, t_list **b);
 void				print_list(t_list *head);
@@ -19,8 +62,8 @@ int					get_index_of_min(t_list **b);
 int					get_index_of_max(t_list **b);
 void				finalize_sorting(t_list **a);
 
-int					get_index_of_min_and_nearest(int *element, t_list **b);
-int					get_index_of_max_and_nearest(int *element, t_list **b);
+int					get_index_of_min_and_nearest(int element, t_list **b);
+int					get_index_of_max_and_nearest(int element, t_list **b);
 void				pb(t_list **head1, t_list **head2);
 void				pa(t_list **head1, t_list **head2);
 int					is_list_sorted_ascending(t_list *a);
@@ -74,15 +117,11 @@ void				*ft_calloc(size_t nmemb, size_t size);
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 void				ft_lstadd_front(t_list **lst, t_list *new);
 void				ft_lstadd_back(t_list **alst, t_list *new);
-void				ft_lstdelone(t_list *lst, void (*del)(void *));
-void				ft_lstclear(t_list **lst, void (*del)(void *));
-void				ft_lstiter(t_list *lst, void (*f)(void *));
+void				ft_lstclear(t_list **lst);
 size_t				ft_strlen(const char *str);
 size_t				ft_strlcpy(char *dest, const char *src, size_t size);
 size_t				ft_strlcat(char *dest, const char *src, size_t size);
 t_list				*ft_lstnew(void *content);
 t_list				*ft_lstlast(t_list *lst);
-t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
-						void (*del)(void *));
 
 #endif

@@ -1,16 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/23 01:30:10 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/03/23 03:25:29 by mlahrach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void swap(t_list **a)
+void	swap(t_list **a)
 {
-    if (*a != NULL && (*a)->next != NULL)
-    {
-        t_list *first = *a;
-        t_list *second = (*a)->next;
+	t_list	*first;
+	t_list	*second;
 
-        first->next = second->next;
-        second->next = first;
-        *a = second;
-    }
+	if (*a != NULL && (*a)->next != NULL)
+	{
+		first = *a;
+		second = (*a)->next;
+		first->next = second->next;
+		second->next = first;
+		*a = second;
+	}
 }
 
 void	sa(t_list **head)

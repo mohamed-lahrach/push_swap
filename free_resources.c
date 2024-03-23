@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   free_resources.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 01:28:33 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/03/23 01:28:35 by mlahrach         ###   ########.fr       */
+/*   Created: 2024/03/23 02:20:02 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/03/23 02:23:19 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	free_split(char **arr)
 {
-	t_list	*last;
-	int		i;
-	int		a;
+	int	i;
 
-	last = NULL;
-	i = ft_lstsize(lst);
-	a = 0;
-	while (a != i)
+	i = 0;
+	while (arr[i])
 	{
-		last = lst;
-		a++;
-		lst = lst->next;
+		free(arr[i]);
+		i++;
 	}
-	return (last);
+	free(arr);
+}
+
+void	free_resources(char *str, char **argv, t_list **a, t_list **b)
+{
+	free(str);
+	free_split(argv);
+	ft_lstclear(a);
+	ft_lstclear(b);
 }

@@ -1,13 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/23 01:30:02 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/03/23 03:25:02 by mlahrach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void rotate(t_list **a)
+void	rotate(t_list **a)
 {
-    t_list *first = *a;
+	t_list	*first;
 
-    (*a) = first->next;
-    first->next = NULL;
-    ft_lstadd_back(a, first);
+	first = *a;
+	(*a) = first->next;
+	first->next = NULL;
+	ft_lstadd_back(a, first);
 }
+
 void	ra(t_list **head)
 {
 	rotate(head);

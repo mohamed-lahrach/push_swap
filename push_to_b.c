@@ -1,155 +1,94 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_to_b.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/23 01:29:50 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/03/23 03:24:09 by mlahrach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int	get_index_by_value(t_list *head, int value)
+void	perform_operations_based_on_indexes(t_list **a, t_list **b,
+		t_indexes indexes)
 {
-	int	i;
-
-	i = 0;
-	while (head)
+	if (indexes.index_b <= indexes.size_b / 2
+		&& indexes.index_a <= indexes.size_a / 2)
+		perform_operations_1(a, b, indexes.index_a, indexes.index_b);
+	else if (indexes.index_b > indexes.size_b / 2
+		&& indexes.index_a > indexes.size_a / 2)
 	{
-		if (*(int *)head->content == value)
-			return (i);
-		head = head->next;
-		i++;
+		indexes.index_b = indexes.size_b - indexes.index_b;
+		indexes.index_a = indexes.size_a - indexes.index_a;
+		perform_operations_2(a, b, indexes.index_a, indexes.index_b);
 	}
-	return (-1);
+	else if (indexes.index_b <= indexes.size_b / 2
+		&& indexes.index_a > indexes.size_a / 2)
+	{
+		indexes.index_a = indexes.size_a - indexes.index_a;
+		perform_operations_3(a, b, indexes.index_a, indexes.index_b);
+	}
+	else if (indexes.index_b > indexes.size_b / 2
+		&& indexes.index_a <= indexes.size_a / 2)
+	{
+		indexes.index_b = indexes.size_b - indexes.index_b;
+		perform_operations_4(a, b, indexes.index_a, indexes.index_b);
+	}
 }
+
 void	transfer_to_stack_b(t_list **a, t_list **b, int index_b, int *element)
 {
-	int	i;
-	int	size_b;
-	int	size_a;
-	int	index_a;
+	t_indexes	indexes;
 
-	index_a = get_index_by_value(*a, *element);
-	size_a = ft_lstsize(*a);
-	i = 0;
-	size_b = ft_lstsize(*b);
-	printf("\n-----------------print list a-----------------\n");
-	print_list(*a);
-	printf("\n-----------------print list b-----------------\n");
-	print_list(*b);
-	printf("\n---------------------------------------------------------------------------------------\n");
-	printf("\nindex_b min and nearest or the max : %i\n", index_b);
-	printf("\nindex_a of the best element to push it to a : %i\n", index_a);
-	printf("\nsiseof(a) %i\n", size_a);
-	printf("\nsiseof(b) %i\n", size_b);
-	printf("\nbest_element : %i\n", *element);
-	// index_a and index_b are in the first half of the list
-	if (index_b <= size_b / 2 && index_a <= size_a / 2)
-	{
-		while (index_b > 0 && index_a > 0)
-		{
-			rr(a, b);
-			index_b--;
-			index_a--;
-		}
-		while (index_b > 0)
-		{
-			rb(b);
-			index_b--;
-		}
-		while (index_a > 0)
-		{
-			ra(a);
-			index_a--;
-		}
-	}
-	// index_a and index_b are in the second half of the list
-	else if (index_b > size_b / 2 && index_a > size_a / 2)
-	{
-		index_b = size_b - index_b;
-		index_a = size_a - index_a;
-		while (index_b > 0 && index_a > 0)
-		{
-			rrr(a, b);
-			index_b--;
-			index_a--;
-		}
-		while (index_b > 0)
-		{
-			rrb(b);
-			index_b--;
-		}
-		while (index_a > 0)
-		{
-			rra(a);
-			index_a--;
-		}
-	}
-	// index_b is in the first half and index_b is in the second half
-	else if (index_b <= size_b / 2 && index_a > size_a / 2)
-	{
-		index_a = size_a - index_a;
-		while (index_b > 0)
-		{
-			rb(b);
-			index_b--;
-		}
-		while (index_a > 0)
-		{
-			rra(a);
-			index_a--;
-		}
-	}
-	// index_b is in the second half and index_b is in the first half
-	else if (index_b > size_b / 2 && index_a <= size_a / 2)
-	{
-		index_b = size_b - index_b;
-		while (index_b > 0)
-		{
-			rrb(b);
-			index_b--;
-		}
-		while (index_a > 0)
-		{
-			ra(a);
-			index_a--;
-		}
-	}
+	indexes.index_a = get_index_by_value(*a, *element);
+	indexes.index_b = index_b;
+	indexes.size_a = ft_lstsize(*a);
+	indexes.size_b = ft_lstsize(*b);
+	perform_operations_based_on_indexes(a, b, indexes);
 	pb(a, b);
 }
-int	max_index(int a, int b)
+
+int	calculate_move(int index_a, int index_b, t_list **a, t_list **b)
 {
-	if (a > b)
-		return (a);
-	else
-		return (b);
+	int	move;
+
+	move = 0;
+	if (index_b <= ft_lstsize(*b) / 2 && index_a <= ft_lstsize(*a) / 2)
+		move = get_max(index_b, index_a);
+	else if (index_b > ft_lstsize(*b) / 2 && index_a > ft_lstsize(*a) / 2)
+		move = get_max(ft_lstsize(*b) - index_b, ft_lstsize(*a) - index_a);
+	else if (index_b <= ft_lstsize(*b) / 2 && index_a > ft_lstsize(*a) / 2)
+		move = index_b + ft_lstsize(*a) - index_a;
+	else if (index_b > ft_lstsize(*b) / 2 && index_a <= ft_lstsize(*a) / 2)
+		move = (ft_lstsize(*b) - index_b) + index_a;
+	return (move);
 }
+
 int	*get_best_move_element_to_push(t_list **a, t_list **b)
 {
-	t_list	*temp;
-	int		index_b;
-	int		*best_element_to_push;
-	int		index_a;
-	int		move;
-	int		best_move;
+	t_move	m;
 
-	index_a = 0;
-	best_move = 2147483647;
-	temp = *a;
-	while (temp)
+	m.temp = *a;
+	m.index_a = 0;
+	m.best_move = 2147483647;
+	while (m.temp)
 	{
-		index_b = get_index_of_min_and_nearest((int *)temp->content, b);
-		if (index_b <= ft_lstsize(*b) / 2 && index_a <= ft_lstsize(*a) / 2)
-			move = max_index(index_b, index_a);
-		else if (index_b > ft_lstsize(*b) / 2 && index_a > ft_lstsize(*a) / 2)
-			move = max_index(ft_lstsize(*b) - index_b, ft_lstsize(*a)
-					- index_a);
-		else if (index_b <= ft_lstsize(*b) / 2 && index_a > ft_lstsize(*a) / 2)
-			move = index_b + ft_lstsize(*a) - index_a;
-		else if (index_b > ft_lstsize(*b) / 2 && index_a <= ft_lstsize(*a) / 2)
-			move = (ft_lstsize(*b) - index_b) + index_a;
-		if (move < best_move)
+		m.index_b = get_index_of_min_and_nearest(*(int *)m.temp->content, b);
+		m.move = calculate_move(m.index_a, m.index_b, a, b);
+		if (m.move < m.best_move)
 		{
-			best_move = move;
-			best_element_to_push = (int *)temp->content;
+			m.best_move = m.move;
+			m.best_element_to_push = (int *)m.temp->content;
 		}
-		temp = temp->next;
-		index_a++;
+		m.temp = m.temp->next;
+		m.index_a++;
 	}
-	return (best_element_to_push);
+	return (m.best_element_to_push);
 }
+
 void	push_to_b(t_list **a, t_list **b)
 {
 	int	i;
@@ -168,7 +107,7 @@ void	push_to_b(t_list **a, t_list **b)
 		while (i > 3)
 		{
 			element = get_best_move_element_to_push(a, b);
-			index = get_index_of_min_and_nearest(element, b);
+			index = get_index_of_min_and_nearest(*element, b);
 			transfer_to_stack_b(a, b, index, element);
 			i--;
 		}

@@ -1,27 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_index_of_min.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/23 01:29:14 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/03/23 02:07:48 by mlahrach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int	get_index_of_min(t_list **b)
+int	get_index_of_min(t_list **head_ref)
 {
-	t_list	*temp;
-	int		min_value;
-	int		min_index;
+	int		a;
 	int		i;
-	int		current_value;
+	int		j;
+	t_list	*head;
 
-	temp = *b;
-	min_value = 2147483647;
-	min_index = 0;
+	j = 0;
 	i = 0;
-	while (temp)
+	head = *head_ref;
+	a = *(int *)head->content;
+	while (head)
 	{
-		current_value = *(int *)temp->content;
-		if (current_value < min_value)
+		if (a > *(int *)head->content)
 		{
-			min_value = current_value;
-			min_index = i;
+			a = *(int *)head->content;
+			i = j;
 		}
-		temp = temp->next;
-		i++;
+		j++;
+		head = head->next;
 	}
-	return (min_index);
+	return (i);
 }

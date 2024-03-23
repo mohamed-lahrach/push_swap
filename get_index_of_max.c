@@ -1,26 +1,37 @@
-#include "libft.h"
-int	get_index_of_max(t_list **b)
-{
-	t_list	*temp;
-	int		max_value;
-	int		max_index;
-	int		i;
-	int		current_value;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_index_of_max.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/23 01:29:10 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/03/23 02:07:26 by mlahrach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	temp = *b;
-	max_value = -2147483648;
-	max_index = 0;
+#include "libft.h"
+
+int	get_index_of_max(t_list **head_ref)
+{
+	int		a;
+	int		i;
+	int		j;
+	t_list	*head;
+
+	j = 0;
 	i = 0;
-	while (temp)
+	head = *head_ref;
+	a = *(int *)head->content;
+	while (head)
 	{
-		current_value = *(int *)temp->content;
-		if (current_value > max_value)
+		if (a < *(int *)head->content)
 		{
-			max_value = current_value;
-			max_index = i;
+			a = *(int *)head->content;
+			j = i;
 		}
-		temp = temp->next;
 		i++;
+		head = head->next;
 	}
-	return (max_index);
+	return (j);
 }
