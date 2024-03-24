@@ -1,40 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 01:30:10 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/03/23 21:26:19 by mlahrach         ###   ########.fr       */
+/*   Created: 2023/12/10 18:55:52 by aabdenou          #+#    #+#             */
+/*   Updated: 2024/03/24 18:07:56 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "get_next_line.h"
 
-void	swap(t_list **a)
+int	find_char_in_string(const char *s, int c)
 {
-	t_list	*first;
-	t_list	*second;
+	int	i;
 
-	if (*a != NULL && (*a)->next != NULL)
+	i = 0;
+	if (s == NULL)
+		return (0);
+	while (s[i] != '\0')
 	{
-		first = *a;
-		second = (*a)->next;
-		first->next = second->next;
-		second->next = first;
-		*a = second;
+		if (s[i] == (char)c)
+			return (1);
+		i++;
 	}
+	if ((char)c == 0)
+		return (1);
+	return (0);
 }
 
-void	sa(t_list **head)
+size_t	ft_strlen(char *s)
 {
-	swap(head);
-	write(1, "sa\n", 3);
-}
+	size_t	i;
 
-void	sb(t_list **head)
-{
-	swap(head);
-	write(1, "sb\n", 3);
+	if (s == NULL)
+		return (0);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

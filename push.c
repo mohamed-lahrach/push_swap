@@ -6,24 +6,22 @@
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 01:29:54 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/03/23 02:24:21 by mlahrach         ###   ########.fr       */
+/*   Updated: 2024/03/24 02:03:30 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	push(t_list **head1, t_list **head2)
+void	push(t_list **head, t_list **p)
 {
-	t_list	*first_node;
+	t_list	*a;
 
-	if (head1 == NULL)
-	{
+	if (*head == NULL)
 		return ;
-	}
-	first_node = *head1;
-	*head1 = first_node->next;
-	first_node->next = NULL;
-	ft_lstadd_front(head2, first_node);
+	a = *head;
+	*head = a->next;
+	a->next = NULL;
+	ft_lstadd_front(p, a);
 }
 
 void	pb(t_list **head1, t_list **head2)

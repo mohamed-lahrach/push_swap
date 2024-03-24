@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 01:30:10 by mlahrach          #+#    #+#             */
+/*   Created: 2024/03/23 01:28:43 by mlahrach          #+#    #+#             */
 /*   Updated: 2024/03/23 21:26:19 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_list **a)
+int	ft_lstsize(t_list *lst)
 {
-	t_list	*first;
-	t_list	*second;
+	int	i;
 
-	if (*a != NULL && (*a)->next != NULL)
+	i = 0;
+	while (lst != NULL)
 	{
-		first = *a;
-		second = (*a)->next;
-		first->next = second->next;
-		second->next = first;
-		*a = second;
+		i++;
+		lst = lst->next;
 	}
-}
-
-void	sa(t_list **head)
-{
-	swap(head);
-	write(1, "sa\n", 3);
-}
-
-void	sb(t_list **head)
-{
-	swap(head);
-	write(1, "sb\n", 3);
+	return (i);
 }

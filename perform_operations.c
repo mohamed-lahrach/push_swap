@@ -6,11 +6,11 @@
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 03:16:05 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/03/23 03:16:07 by mlahrach         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:26:19 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 void	perform_operations_1(t_list **a, t_list **b, int index_a, int index_b)
 {

@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 01:30:10 by mlahrach          #+#    #+#             */
+/*   Created: 2024/03/23 01:26:29 by mlahrach          #+#    #+#             */
 /*   Updated: 2024/03/23 21:26:19 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_list **a)
+void	ft_lstclear(t_list **lst)
 {
-	t_list	*first;
-	t_list	*second;
+	t_list	*p;
 
-	if (*a != NULL && (*a)->next != NULL)
+	if (*lst == NULL)
+		return ;
+	while ((*lst) != NULL)
 	{
-		first = *a;
-		second = (*a)->next;
-		first->next = second->next;
-		second->next = first;
-		*a = second;
+		p = (*lst)->next;
+		free((*lst)->content);
+		free(*lst);
+		*lst = p;
 	}
-}
-
-void	sa(t_list **head)
-{
-	swap(head);
-	write(1, "sa\n", 3);
-}
-
-void	sb(t_list **head)
-{
-	swap(head);
-	write(1, "sb\n", 3);
+	free(*lst);
+	*lst = NULL;
 }

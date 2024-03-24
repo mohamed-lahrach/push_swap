@@ -6,11 +6,11 @@
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 01:25:26 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/03/23 01:46:13 by mlahrach         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:26:19 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 int	check_duplicate_digits(char **arr)
 {

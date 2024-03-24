@@ -6,13 +6,13 @@
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 01:29:26 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/03/23 02:22:55 by mlahrach         ###   ########.fr       */
+/*   Updated: 2024/03/24 20:40:45 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	sort_it(t_list **a, t_list **b)
+void	sort_stack(t_list **a, t_list **b)
 {
 	push_to_b(a, b);
 	push_to_a(a, b);
@@ -39,23 +39,18 @@ void	validate_and_sort_input(char **argv, t_list **a, t_list **b)
 			sort_three(a);
 		}
 		else
-			sort_it(a, b);
+			sort_stack(a, b);
 	}
 }
 
-char	*concatenate_arguments(int argc, char **argv)
+int	check_and_free(char *str)
 {
-	char	*str;
-	int		i;
-
-	str = NULL;
-	i = 1;
-	while (i < argc)
+	if (str == NULL)
 	{
-		str = ft_strjoin(str, argv[i++]);
-		str = ft_strjoin(str, " ");
+		free(str);
+		return (1);
 	}
-	return (str);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -77,7 +72,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	str = concatenate_arguments(argc, argv);
-	if (str == NULL)
+	if (check_and_free(str))
 		return (1);
 	argv = ft_split(str, ' ');
 	validate_and_sort_input(argv, &a, &b);

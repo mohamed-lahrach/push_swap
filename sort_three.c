@@ -6,11 +6,11 @@
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 01:30:06 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/03/23 03:25:09 by mlahrach         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:26:19 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 void	sort_three(t_list **a)
 {

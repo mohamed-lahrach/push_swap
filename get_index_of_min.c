@@ -6,11 +6,11 @@
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 01:29:14 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/03/23 02:07:48 by mlahrach         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:26:19 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 int	get_index_of_min(t_list **head_ref)
 {

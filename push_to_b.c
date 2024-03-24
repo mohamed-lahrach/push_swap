@@ -6,11 +6,11 @@
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 01:29:50 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/03/23 03:24:09 by mlahrach         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:26:19 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 void	perform_operations_based_on_indexes(t_list **a, t_list **b,
 		t_indexes indexes)

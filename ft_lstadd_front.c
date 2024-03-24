@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 01:30:10 by mlahrach          #+#    #+#             */
+/*   Created: 2024/03/23 01:26:24 by mlahrach          #+#    #+#             */
 /*   Updated: 2024/03/23 21:26:19 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_list **a)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	t_list	*first;
-	t_list	*second;
-
-	if (*a != NULL && (*a)->next != NULL)
+	if (lst == NULL || new == NULL)
 	{
-		first = *a;
-		second = (*a)->next;
-		first->next = second->next;
-		second->next = first;
-		*a = second;
+		return ;
 	}
-}
-
-void	sa(t_list **head)
-{
-	swap(head);
-	write(1, "sa\n", 3);
-}
-
-void	sb(t_list **head)
-{
-	swap(head);
-	write(1, "sb\n", 3);
+	new->next = *lst;
+	*lst = new;
 }

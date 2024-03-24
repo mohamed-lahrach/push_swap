@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   concatenate_arguments.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 01:30:10 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/03/23 21:26:19 by mlahrach         ###   ########.fr       */
+/*   Created: 2024/03/24 18:26:18 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/03/24 18:32:00 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_list **a)
+char	*concatenate_arguments(int argc, char **argv)
 {
-	t_list	*first;
-	t_list	*second;
+	char	*str;
+	int		i;
 
-	if (*a != NULL && (*a)->next != NULL)
+	str = NULL;
+	i = 1;
+	while (i < argc)
 	{
-		first = *a;
-		second = (*a)->next;
-		first->next = second->next;
-		second->next = first;
-		*a = second;
+		str = ft_strjoin(str, argv[i++]);
+		str = ft_strjoin(str, " ");
 	}
-}
-
-void	sa(t_list **head)
-{
-	swap(head);
-	write(1, "sa\n", 3);
-}
-
-void	sb(t_list **head)
-{
-	swap(head);
-	write(1, "sb\n", 3);
+	return (str);
 }
