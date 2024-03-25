@@ -6,7 +6,7 @@
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 01:29:23 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/03/24 18:28:46 by mlahrach         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:05:53 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void				free_resources(char *str, char **argv, t_list **a,
 						t_list **b);
 void				push_to_b(t_list **a, t_list **b);
 void				push_to_a(t_list **a, t_list **b);
-void				print_list(t_list *head);
 int					get_index_of_min(t_list **b);
 int					get_index_of_max(t_list **b);
 void				finalize_sorting(t_list **a);

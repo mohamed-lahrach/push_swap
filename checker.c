@@ -6,54 +6,25 @@
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 18:08:41 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/03/24 20:52:26 by mlahrach         ###   ########.fr       */
+/*   Updated: 2024/03/25 00:25:46 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "push_swap.h"
 
-void	ss(t_list **a, t_list **b)
+void ss(t_list **a, t_list **b)
 {
 	swap(b);
 	swap(a);
 }
 
-int	other_checks(t_list **a, t_list **b, char *str)
+int checker(t_list **a, t_list **b)
 {
-	if (ft_strcmp(str, "ra\n") == 0)
-		rotate(a);
-	else if (ft_strcmp(str, "rb\n") == 0)
-		rotate(b);
-	else if (ft_strcmp(str, "rr\n") == 0)
-	{
-		rotate(a);
-		rotate(b);
-	}
-	else if (ft_strcmp(str, "rra\n") == 0)
-		reverse_rotate(a);
-	else if (ft_strcmp(str, "rrb\n") == 0)
-		reverse_rotate(b);
-	else if (ft_strcmp(str, "rrr\n") == 0)
-	{
-		reverse_rotate(a);
-		reverse_rotate(b);
-	}
-	else
-	{
-		ft_lstclear(a);
-		write(2, "Error\n", 6);
-		return (1);
-	}
-	return (0);
-}
-
-void	checker(t_list **a, t_list **b)
-{
-	char	*line;
+	char *line;
 
 	if (*a == NULL)
-		return ;
+		return 0;
 	line = get_next_line(0);
 	while (line != NULL)
 	{
@@ -67,43 +38,67 @@ void	checker(t_list **a, t_list **b)
 			swap(b);
 		else if (ft_strcmp(line, "ss\n") == 0)
 			ss(a, b);
-		else if (other_checks(a, b, line) == 1)
+		else if (ft_strcmp(line, "ra\n") == 0)
+			rotate(a);
+		else if (ft_strcmp(line, "rb\n") == 0)
+			rotate(b);
+		else if (ft_strcmp(line, "rr\n") == 0)
+		{
+			rotate(a);
+			rotate(b);
+		}
+		else if (ft_strcmp(line, "rra\n") == 0)
+			reverse_rotate(a);
+		else if (ft_strcmp(line, "rrb\n") == 0)
+			reverse_rotate(b);
+		else if (ft_strcmp(line, "rrr\n") == 0)
+		{
+			reverse_rotate(a);
+			reverse_rotate(b);
+		}
+		else
 		{
 			free(line);
-			exit(0);
+			return 1;
 		}
 		free(line);
 		line = get_next_line(0);
 	}
+	return 0;
 }
 
-void	process_and_check(char **argv, char *str, t_list **a, t_list **b)
+void process_and_check(char **argv, char *str, t_list **a, t_list **b)
 {
 	if (check_valid_input(argv))
 	{
 		write(2, "Error\n", 6);
 		free_resources(str, argv, a, b);
-		return ;
+		return;
 	}
 	convert_args_to_list(argv, a);
 	if (is_list_sorted_ascending(*a))
 	{
 		free_resources(str, argv, a, b);
-		return ;
+		return;
 	}
-	checker(a, b);
-	if (*b == NULL && is_list_sorted_ascending(*a) == 1)
-		write(1, "OK\n", 3);
-	else
-		write(1, "KO\n", 3);
+	if (checker(a, b) == 0)
+	{
+		if (*b == NULL && is_list_sorted_ascending(*a) == 1)
+			write(1, "OK\n", 3);
+		else
+			write(1, "KO\n", 3);
+	}else
+	{
+		write(2, "Error\n", 6);
+	}
 	free_resources(str, argv, a, b);
 }
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	char	*str;
-	t_list	*a;
-	t_list	*b;
+	char *str;
+	t_list *a;
+	t_list *b;
 
 	b = NULL;
 	a = NULL;
@@ -123,6 +118,5 @@ int	main(int argc, char **argv)
 	}
 	argv = ft_split(str, ' ');
 	process_and_check(argv, str, &a, &b);
-	system("leaks checker");
 	return (0);
 }

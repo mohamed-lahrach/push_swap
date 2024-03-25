@@ -6,7 +6,7 @@
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:55:31 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/03/24 20:28:01 by mlahrach         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:07:24 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@
 #  define BUFFER_SIZE 42
 # endif
 
-int		check_others(t_list **a, t_list **b, char *str);
-void	checker(t_list **a, t_list **b);
+int	checker(t_list **a, t_list **b);
 size_t	ft_strlen(char *str);
 int		find_char_in_string(const char *s, int c);
 char	*get_next_line(int fd);
