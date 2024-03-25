@@ -6,9 +6,11 @@
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 01:25:05 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/03/23 01:39:59 by mlahrach         ###   ########.fr       */
+/*   Updated: 2024/03/25 02:40:50 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 int	check_empty_str(char **argv)
 {

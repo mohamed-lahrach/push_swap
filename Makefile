@@ -30,7 +30,7 @@ SRC_BONUS = checker.c get_next_line.c get_next_line_utils.c \
 OBJ = $(SRC:.c=.o)
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
 COMPLE = cc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 NAME = push_swap
 BNS = checker 
 
