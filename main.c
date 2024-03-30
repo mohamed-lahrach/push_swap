@@ -59,14 +59,12 @@ int	check_and_free(char *str)
 int	main(int argc, char **argv)
 {
 	char	*str;
-	int		i;
 	t_list	*a;
 	t_list	*b;
 
 	b = NULL;
 	a = NULL;
 	str = NULL;
-	i = 1;
 	if (argc == 1)
 		return (0);
 	if (check_empty_str(argv))

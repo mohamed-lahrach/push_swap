@@ -97,6 +97,11 @@ char	*get_next_line(int fd)
 	static char	*static_buffer;
 	char		*current_line;
 
+	if(fd == -1)
+	{
+		free(static_buffer);
+		return (NULL);
+	}
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	static_buffer = read_file_into_buffer(static_buffer, fd);

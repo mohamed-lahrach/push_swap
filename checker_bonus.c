@@ -36,6 +36,7 @@ int	check_other(t_list **a, t_list **b, char *str)
 	else
 	{
 		free(str);
+		get_next_line(-1);
 		return (1);
 	}
 	return (0);
@@ -129,6 +130,5 @@ int	main(int argc, char **argv)
 	}
 	argv = ft_split(str, ' ');
 	process_and_check(argv, str, &a, &b);
-	system("leaks checker");
 	return (0);
 }

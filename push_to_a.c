@@ -43,9 +43,7 @@ void	push_to_a(t_list **a, t_list **b)
 	int		*element;
 	int		index;
 	int		i;
-	t_list	*temp;
 
-	temp = *b;
 	index = -1;
 	i = ft_lstsize(*b);
 	while (i)
